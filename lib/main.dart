@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
             seedColor: seedColor, brightness: Brightness.light
         ),
-        textTheme: GoogleFonts.interTextTheme(
+        textTheme: GoogleFonts.notoSansTextTheme(
           Theme.of(context)
               .textTheme,
         ),
