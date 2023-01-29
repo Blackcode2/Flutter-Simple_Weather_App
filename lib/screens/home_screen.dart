@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:simple_weather_app/data/my_location.dart';
 import 'package:simple_weather_app/data/network.dart';
+import 'package:simple_weather_app/screens/search_screen.dart';
 
 const apiKey = '96a7a3badb65203ce37caf781740308b';
 
@@ -21,19 +23,24 @@ class _HomeScreenState extends State<HomeScreen> {
   String weatherDescription = '--';
   Map hourlyWeatherMap = {};
 
-  @override
-  void initState() {
-    super.initState();
-    getMyLocation();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getMyLocation();
+  // }
+
 
   Future<void> getMyLocation() async {
+    double lat;
+    double lon;
     Mylocation myLocation = Mylocation(context: context);
     await myLocation.checkPermission();
-    await getWeatherData(myLocation.lat, myLocation.lon);
+    lat = myLocation.lat;
+    lon = myLocation.lon;
+    await getWeatherData(lat, lon);
   }
 
-  Future<dynamic> getWeatherData(double lat, double lon) async {
+  Future<dynamic> getWeatherData(double? lat, double? lon) async {
     Network network = Network(
         'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric');
     Network network2 = Network(
@@ -81,7 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: Search()); //update later in version 1.2.0
+            },
             icon: const Icon(
               Icons.search,
               color: Colors.white,
@@ -252,7 +261,7 @@ class _WeatherIconState extends State<WeatherIcon> {
         width: widget.imageWidth,
         height: widget.imageHeight,
       );
-    } else if(widget.weatherMain == 'Atmosphere') {
+    } else if(widget.weatherMain == 'Mist' || widget.weatherMain == 'Smoke') {
       return iconImage(
         name: 'assets/mist&wind.png',
         width: widget.imageWidth,
