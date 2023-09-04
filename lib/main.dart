@@ -4,7 +4,8 @@ import 'screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(const MyApp());
 }
 
@@ -19,11 +20,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: seedColor, brightness: Brightness.light
-        ),
+            seedColor: seedColor, brightness: Brightness.light),
         textTheme: GoogleFonts.notoSansTextTheme(
-          Theme.of(context)
-              .textTheme,
+          Theme.of(context).textTheme,
         ),
       ),
       home: const HomeScreen(),
