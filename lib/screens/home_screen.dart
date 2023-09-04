@@ -4,7 +4,7 @@ import 'package:simple_weather_app/data/my_location.dart';
 import 'package:simple_weather_app/data/network.dart';
 import 'package:simple_weather_app/screens/search_screen.dart';
 
-const apiKey = '96a7a3badb65203ce37caf781740308b';
+const apiKey = '';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
